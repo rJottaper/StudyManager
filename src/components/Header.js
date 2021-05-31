@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
-        paddingVertical: 50,
-        borderBottomWidth: 0.4,
+        paddingVertical: 36,
+        borderBottomWidth: 0.5,
         borderBottomColor: '#6197EB'
     },
     greeting: {

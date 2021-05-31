@@ -4,7 +4,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import Header from '../components/Header'
 
-const Home = () => {
+const Home = ({ navigation }) => {
     return (
     <SafeAreaView style={styles.container}>
         <Header />
@@ -14,7 +14,7 @@ const Home = () => {
             </Text>
         </View>
         <View style={styles.method}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyAlone')} >
                 <FontAwesome name="user" style={styles.icons} />
                 <Text style={styles.texts}>Study Alone</Text>
             </TouchableOpacity>

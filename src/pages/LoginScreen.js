@@ -34,20 +34,20 @@ const Login = ({ navigation }) => {
       setPassword(value);
     }
 
-    async function submit() {
-      if (email === '' && password === '') {
-        Alert.alert('Please, you must enter your email and password!')
-      } else if (email === '' ) {
-          Alert.alert('Please, enter your email!')
-      } else if (password === '') {
-          Alert.alert('Please, enter your password!')
-      } else {
-        await AsyncStorage.setItem('@studymanager:user', email)
-        navigation.navigate('HomeScreen')
-      }
-      
-    }
-
+    // async function submit() {
+    //   if (email === '' && password === '') {
+    //     Alert.alert('Please, you must enter your email and password!')
+    //   } else if (email === '' ) {
+    //       Alert.alert('Please, enter your email!')
+    //   } else if (password === '') {
+    //       Alert.alert('Please, enter your password!')
+    //   } else {
+    //     await AsyncStorage.setItem('@studymanager:user', email)
+    //   }
+    
+    // }
+     
+    
     return ( 
       <SafeAreaView style={styles.container}>
         <KeyboardAvoidingView 
@@ -82,7 +82,7 @@ const Login = ({ navigation }) => {
                   onChangeText={changePassword}
                 />
               </View>
-              <TouchableOpacity style={styles.button} onPress={submit}>
+              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
                 <Text style={styles.buttonText}>
                   Login
                 </Text>

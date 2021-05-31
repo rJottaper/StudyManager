@@ -6,6 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Welcome from './src/pages/Welcome';
 import LoginScreen from './src/pages/LoginScreen';
 import HomeScreen from './src/pages/Home';
+import StudyAlone from './src/pages/StudyAlone'
+import addTask from './src/pages/addTask'
 
 
 
@@ -21,6 +23,8 @@ const App = () => {
         />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="StudyAlone" component={StudyAlone} />
+        <Stack.Screen name="addTask" component={addTask} />
       </Stack.Navigator>
     </NavigationContainer>
   )

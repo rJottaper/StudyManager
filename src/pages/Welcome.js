@@ -13,7 +13,7 @@ const Welcome = ({ navigation }) => {
                     it's really good to see you here
                 </Text>
             </View> 
-            <View style={styles.header}>
+            <View>
                 <WelcomeImg height="250" width="250" />
             </View>
             <View style={styles.subTitle}>
@@ -37,9 +37,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#E0E5EF',
         width: '100%'
-    },
-    header: {
-        
     },
     title: {
         backgroundColor: '#b8d8ed',
