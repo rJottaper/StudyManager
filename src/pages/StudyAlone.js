@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, View, TouchableOpacity, StyleSheet, ScrollView, FlatList, } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,29 +9,41 @@ import Task from '../components/Task'
 
 import Tabs from '../navigation/Tabs';
 
-const StudyAlone = ({ route, navigation })  => {
+const StudyAlone = ({ route, navigation, })  => {
 // const Tab = createBottomTabNavigator();
-    const dados = [
-        {id: 1, task: 'Study English', hour: '12:00'}, 
-        {id: 2, task: 'Study React Native', hour: '17:30'},
-        {id: 3, task: 'Study React Native', hour: '19:30'},
-        {id: 4, task: 'Reed a Book', hour: '22:30'}
-    ];
+    
+    const [dados, setDados] = useState([
+        {task: 'Study English'}, 
+    ]);
 
+    useEffect(() => {
+        if (route.params?.taskName) {
+            const newTask = route.params
+            console.log(newTask)
+            const task = newTask.taskName
+            console.log(task);
+            setDados(oldDados => [...oldDados, {task}])
+        }
+    }, [route.params?.taskName])
+
+    
+    console.log(dados)
+
+    
+    
+    
     return (
         <SafeAreaView style={styles.container}> 
-            <ScrollView style={styles.scrollView}>
-                <Header style={styles.header} />
-                <View style={styles.view}>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('addTask')}>
-                        <Icon name="plus" style={styles.buttonText}/>
-                    </TouchableOpacity>
-                    <Text style={styles.text}>Tasks Today</Text>
-                </View>         
-            </ScrollView>
+            <Header style={styles.header} />
+            <View style={styles.view}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('addTask')}>
+                    <Icon name="plus" style={styles.buttonText}/>
+                </TouchableOpacity>
+                <Text style={styles.text}>Tasks Today</Text>
+            </View>        
             <FlatList 
                     data={dados}
-                    renderItem={({ item }) => <Task task={item.task} hour={item.hour} /> }
+                    renderItem={({ item }) => <Task task={item.task}  /> }
                       
             />  
             {/* <NavigationContainer independent={true}>

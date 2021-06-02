@@ -8,7 +8,7 @@ const Task = ({ task, hour }) => {
             <View>
                 <View style={styles.viewBT}>
                     <Icon name="book" style={styles.taskBook} />
-                    <Text style={styles.taskHour}>{hour}</Text> 
+                    <Text style={styles.taskHour}>12:00</Text> 
                 </View>
                 <View>
                     <Text style={styles.task}>{task}</Text>

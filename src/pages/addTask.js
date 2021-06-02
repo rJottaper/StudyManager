@@ -6,17 +6,16 @@ import HomeWork from '../img/homework.svg'
 
 const AddTask = ({ navigation }) => {
     const [task, setTask] = useState('');
-    
-    const newTask = (value) => {
-        setTask(value);
-    };
 
     const sendTask = () => {
         if (task == '') {
             Alert.alert('You Must Put a Task')
         } else {
-            navigation.goBack();
+            navigation.navigate('StudyAlone', {
+                taskName: task 
+            })
         }
+        console.log(task)
     };
 
     return (
@@ -36,7 +35,8 @@ const AddTask = ({ navigation }) => {
                                         style={styles.inputText} 
                                         placeholder="What You Go Study?"
                                         value={task}
-                                        onChangeText={newTask} />
+                                        onChangeText={newTask => setTask(newTask)} 
+                                    />
                                 </View>
                                 <View>
                                     <TouchableOpacity 
