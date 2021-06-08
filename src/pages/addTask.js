@@ -15,7 +15,6 @@ const AddTask = ({ navigation }) => {
                 taskName: task 
             })
         }
-        console.log(task)
     };
 
     return (

@@ -7,30 +7,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Header from '../components/Header'
 import Task from '../components/Task'
 
-import Tabs from '../navigation/Tabs';
-
 const StudyAlone = ({ route, navigation, })  => {
-// const Tab = createBottomTabNavigator();
-    
-    const [dados, setDados] = useState([
+    const [data, setData] = useState([
         {task: 'Study English'}, 
     ]);
 
     useEffect(() => {
         if (route.params?.taskName) {
             const newTask = route.params
-            console.log(newTask)
             const task = newTask.taskName
-            console.log(task);
-            setDados(oldDados => [...oldDados, {task}])
+            setData(oldData => [...oldData, {task}])
         }
     }, [route.params?.taskName])
-
-    
-    console.log(dados)
-
-    
-    
     
     return (
         <SafeAreaView style={styles.container}> 
@@ -42,13 +30,10 @@ const StudyAlone = ({ route, navigation, })  => {
                 <Text style={styles.text}>Tasks Today</Text>
             </View>        
             <FlatList 
-                    data={dados}
+                    data={data}
                     renderItem={({ item }) => <Task task={item.task}  /> }
-                      
+                    
             />  
-            {/* <NavigationContainer independent={true}>
-                <Tabs />
-            </NavigationContainer> */}
         </SafeAreaView>
     )};
 
