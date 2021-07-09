@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, View, TouchableOpacity, StyleSheet, ScrollView, FlatList, } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { SafeAreaView, Text, View, TouchableOpacity, StyleSheet, ScrollView, FlatList, Alert, } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Header from '../components/Header'
-import Task from '../components/Task'
+import Header from '../components/Header';
+import Task from '../components/Task';
 
-const StudyAlone = ({ route, navigation, })  => {
-    const [data, setData] = useState([
-        {task: 'Study English'}, 
-    ]);
+const StudyAlone = ({ route, navigation })  => {
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         if (route.params?.taskName) {
             const newTask = route.params
             const task = newTask.taskName
-            setData(oldData => [...oldData, {task}])
+            const newId = route.params
+            const id = newId.key
+            setData(oldData => [...oldData, {id: id, task} ])
         }
     }, [route.params?.taskName])
-    
+
+    console.log(data);
+
+    const removeTask = (id) => { 
+        const filteredId = data.filter(item => item.id !== id)
+        setData({ data: filteredId })
+        console.log(filteredId);
+    }
+
     return (
-        <SafeAreaView style={styles.container}> 
+        <SafeAreaView style={styles.container}>
             <Header style={styles.header} />
             <View style={styles.view}>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('addTask')}>
@@ -31,9 +37,9 @@ const StudyAlone = ({ route, navigation, })  => {
             </View>        
             <FlatList 
                     data={data}
-                    renderItem={({ item }) => <Task task={item.task}  /> }
-                    
-            />  
+                    renderItem={({ item }) => <Task task={item.task} removeTask={removeTask} /> }
+                    keyExtractor={item => item.id}
+            /> 
         </SafeAreaView>
     )};
 

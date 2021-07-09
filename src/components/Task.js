@@ -3,10 +3,10 @@ import { TouchableOpacity, View, Text, StyleSheet, SafeAreaView, Animated } from
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 
-const Task = ({ task, hour }) => {
+const Task = ({ task, hour, removeTask }) => {
     const rightSwipe = () => {
         return (
-            <TouchableOpacity style={styles.deleteView}>
+            <TouchableOpacity style={styles.deleteView} onPress={removeTask} >
                 <View>
                     <Icon name="trash" style={styles.trash} />
                 </View>

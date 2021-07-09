@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
 
-import HomeWork from '../img/homework.svg'
+import HomeWork from '../img/homework.svg';
 
 const AddTask = ({ navigation }) => {
+    const key = uuidv4();
     const [task, setTask] = useState('');
 
     const sendTask = () => {
@@ -12,7 +14,8 @@ const AddTask = ({ navigation }) => {
             Alert.alert('You Must Put a Task')
         } else {
             navigation.navigate('StudyAlone', {
-                taskName: task 
+                key: key,
+                taskName: task
             })
         }
     };
