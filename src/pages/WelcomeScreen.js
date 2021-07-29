@@ -1,10 +1,13 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import WelcomeImg from '../img/Welcome.svg'
 
-const Welcome = ({ navigation }) => {
+const Welcome = ({  }) => {
+    const navigation = useNavigation();
+    
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.title}>

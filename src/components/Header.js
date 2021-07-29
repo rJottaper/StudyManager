@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, Image, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import userImg from '../img/unknown.png'
 
-const Header = () => {
-    const [userName, setUserName] = useState();
-    useEffect(() => {
-        async function loadStorageUsername() {
-            const user = await AsyncStorage.getItem('@studymanager:user')
-            setUserName(user || '')
-        }
-        loadStorageUsername();
-    }, [userName])
+const Header = (route, navigation) => {
+
     return (
         <View style={styles.container}>
             <View>
                 <Text style={styles.greeting}>Hi,</Text>
-                <Text style={styles.username}>{userName}</Text>
+                <Text style={styles.username}>{route.email}</Text>
             </View>
             <Image source={userImg} style={styles.image} />
         </View>
@@ -43,7 +35,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         color: '#6197EB',
         fontWeight: "bold"
-    },  
+    },
     image: {
         width: 85,
         height: 85,

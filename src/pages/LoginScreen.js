@@ -1,106 +1,81 @@
 import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
-import { Platform } from 'react-native';
-import { SafeAreaView, 
-  View, 
-  Text, 
-  StyleSheet, 
-  TextInput, 
-  TouchableOpacity, 
-  Image, 
-  TouchableWithoutFeedback, 
-  Keyboard, 
-  Alert, 
-  KeyboardAvoidingView} 
-from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import { SafeAreaView, View, Text, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import SecurityImg from '../img/online.svg'
 
-const Login = ({ navigation }) => {
-    
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isFilled, setIsFilled] = useState();
+const Login = ({ route }) => {
+  const navigation = useNavigation();
 
-    const changeEmail = (value) => {
-      setIsFilled(!value);
-      setEmail(value);
-    }
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isFilled, setIsFilled] = useState();
 
-    const changePassword = (value) => {
-      setIsFilled(!value);
-      setPassword(value);
-    }
+  const changeEmail = (value) => {
+    setIsFilled(!value);
+    setEmail(value);
+  }
 
-    // async function submit() {
-    //   if (email === '' && password === '') {
-    //     Alert.alert('Please, you must enter your email and password!')
-    //   } else if (email === '' ) {
-    //       Alert.alert('Please, enter your email!')
-    //   } else if (password === '') {
-    //       Alert.alert('Please, enter your password!')
-    //   } else {
-    //     await AsyncStorage.setItem('@studymanager:user', email)
-    //   }
-    
-    // }
-     
-    
-    return ( 
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView 
-              style={styles.container} 
-              behavior={Platform.OS == "ios" ? "padding" : "height"} 
-        >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.content}>
-              <View style={styles.header}>
-                <SecurityImg width="200" height="150" />
-              </View>
-              <View>
-                <Text style={styles.loginTitle}>Login</Text>
-              </View>
-              <View style={styles.inputs}>
-                <Text style={styles.texts}>Username</Text>
-                <TextInput 
-                  placeholder='yourname' 
-                  style={styles.email}
-                  value={email}
-                  onChangeText={changeEmail}
-                />
-              </View>
-              <View style={styles.inputs}>
-                <Text style={styles.texts}>Password</Text>
-                <TextInput 
-                  placeholder='yourpassword' 
-                  maxLength={15} 
-                  style={styles.password} 
-                  secureTextEntry={true} 
-                  value={password}
-                  onChangeText={changePassword}
-                />
-              </View>
-              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
-                <Text style={styles.buttonText}>
-                  Login
+  const changePassword = (value) => {
+    setIsFilled(!value);
+    setPassword(value);
+  }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.content}>
+            <View style={styles.header}>
+              <SecurityImg width="200" height="150" />
+            </View>
+            <View>
+              <Text style={styles.loginTitle}>Login</Text>
+            </View>
+            <View style={styles.inputs}>
+              <Text style={styles.texts}>Username</Text>
+              <TextInput
+                placeholder='yourname'
+                style={styles.email}
+                value={email}
+                onChangeText={changeEmail}
+              />
+            </View>
+            <View style={styles.inputs}>
+              <Text style={styles.texts}>Password</Text>
+              <TextInput
+                placeholder='yourpassword'
+                maxLength={15}
+                style={styles.password}
+                secureTextEntry={true}
+                value={password}
+                onChangeText={changePassword}
+              />
+            </View>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeScreen', { email })}>
+              <Text style={styles.buttonText}>
+                Login
+              </Text>
+            </TouchableOpacity>
+            <View style={styles.footer}>
+              <Text style={styles.subtitle}>Don't have an account yet?</Text>
+              <TouchableOpacity>
+                <Text style={styles.buttonSubText}>
+                  Sign Up
                 </Text>
               </TouchableOpacity>
-              <View style={styles.footer}>
-                <Text style={styles.subtitle}>Don't have an account yet?</Text>
-                <TouchableOpacity>
-                  <Text style={styles.buttonSubText}>
-                    Sign Up
-                  </Text>
-                </TouchableOpacity>
-              </View>  
             </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    )
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  )
 };
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -130,14 +105,14 @@ const styles = StyleSheet.create({
   inputs: {
     width: '100%',
     paddingHorizontal: 20,
-    
+
   },
   texts: {
     fontSize: 16,
     color: '#A1B0D4',
     marginLeft: 4,
     marginTop: 5
-  }, 
+  },
   email: {
     fontSize: 14,
     borderBottomWidth: 1,

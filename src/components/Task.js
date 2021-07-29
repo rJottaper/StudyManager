@@ -6,7 +6,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 const Task = ({ task, hour, removeTask }) => {
     const rightSwipe = () => {
         return (
-            <TouchableOpacity style={styles.deleteView} onPress={removeTask} >
+            <TouchableOpacity style={styles.deleteView} onPress={removeTask}>
                 <View>
                     <Icon name="trash" style={styles.trash} />
                 </View>

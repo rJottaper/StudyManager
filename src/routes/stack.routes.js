@@ -1,24 +1,28 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import WelcomeScreen from '../pages/Welcome';
+import WelcomeScreen from '../pages/WelcomeScreen';
 import LoginScreen from '../pages/LoginScreen';
+import HomeScreen from '../pages/HomeScreen';
+import StudyAloneScreen from '../pages/StudyAloneScreen';
+import AddTaskScreen from '../pages/AddTaskScreen';
+import StudyWithFriends from '../pages/StudyWithFriends';
+import NewMeetings from '../pages/NewMeetings';
 
-const stackRoutes = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
-const AppRoutes = () => (
-    
-        <stackRoutes.Navigator headerMode="none">
-            <stackRoutes.Screen 
-                name="WelcomeScreen" 
-                component={WelcomeScreen} 
-            />
-            <stackRoutes.Screen 
-                name="LoginScreen" 
-                component={LoginScreen} 
-            />
-        </stackRoutes.Navigator>
-    
-);
+const AppRoutes = () => {
+    return (
+        <Navigator headerMode="none">
+            <Screen name="WelcomeScreen" component={WelcomeScreen} />
+            <Screen name="LoginScreen" component={LoginScreen} />
+            <Screen name="HomeScreen" component={HomeScreen} />
+            <Screen name="StudyAloneScreen" component={StudyAloneScreen} />
+            <Screen name="AddTaskScreen" component={AddTaskScreen} />
+            <Screen name="StudyWithFriends" component={StudyWithFriends} />
+            <Screen name="NewMeetings" component={NewMeetings} />
+        </Navigator>
+    )
+};
 
 export default AppRoutes;

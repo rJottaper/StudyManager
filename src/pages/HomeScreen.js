@@ -1,29 +1,33 @@
 import React from 'react';
 import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import Header from '../components/Header'
 
-const Home = ({ navigation }) => {
+const Home = ({ route }) => {
+    const navigation = useNavigation();
+    const { email } = route.params
+
     return (
-    <SafeAreaView style={styles.container}>
-        <Header />
-        <View>
-            <Text style={styles.title}>
-                How do you want to study today?
-            </Text>
-        </View>
-        <View style={styles.method}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyAlone')} >
-                <FontAwesome name="user" style={styles.icons} />
-                <Text style={styles.texts}>Study Alone</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-                <FontAwesome name="users" style={styles.icons} />
-                <Text style={styles.texts}>Study With Friends</Text>
-            </TouchableOpacity>
-        </View>
-    </SafeAreaView>
+        <SafeAreaView style={styles.container}>
+            <Header email={route.params.email} />
+            <View>
+                <Text style={styles.title}>
+                    How do you want to study today?
+                </Text>
+            </View>
+            <View style={styles.method}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyAloneScreen', {email})}>
+                    <FontAwesome name="user" style={styles.icons} />
+                    <Text style={styles.texts}>Study Alone</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyWithFriends', {email})}>
+                    <FontAwesome name="users" style={styles.icons} />
+                    <Text style={styles.texts}>Study With Friends</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     )
 };
 
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
         paddingBottom: 50,
     },
     method: {
-        flex: 1, 
+        flex: 1,
         height: "100%",
         flexDirection: "row",
         justifyContent: "center",

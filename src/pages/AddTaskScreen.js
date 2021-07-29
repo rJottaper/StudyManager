@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { v4 as uuidv4 } from 'uuid';
 
 import HomeWork from '../img/homework.svg';
 
-const AddTask = ({ navigation }) => {
+const AddTask = ({  }) => {
+    const navigation = useNavigation();
+
     const key = uuidv4();
     const [task, setTask] = useState('');
 
@@ -13,7 +15,7 @@ const AddTask = ({ navigation }) => {
         if (task == '') {
             Alert.alert('You Must Put a Task')
         } else {
-            navigation.navigate('StudyAlone', {
+            navigation.navigate('StudyAloneScreen', {
                 key: key,
                 taskName: task
             })
@@ -22,34 +24,34 @@ const AddTask = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={styles.container} >    
+            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={styles.container} >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
+                        <View>
+                            <Text style={styles.text}>Ready To Study Today?</Text>
+                        </View>
+                        <View style={styles.viewImage}>
+                            <HomeWork height={250} width={250} />
+                        </View>
+                        <View style={styles.viewDetails}>
+                            <View style={styles.input}>
+                                <TextInput
+                                    style={styles.inputText}
+                                    placeholder="What You Go Study?"
+                                    value={task}
+                                    onChangeText={newTask => setTask(newTask)}
+                                />
+                            </View>
                             <View>
-                                <Text style={styles.text}>Ready To Study Today?</Text>
-                            </View>
-                            <View style={styles.viewImage}>
-                                <HomeWork height={250} width={250} />
-                            </View>
-                            <View style={styles.viewDetails}>
-                                <View style={styles.input}>  
-                                    <TextInput 
-                                        style={styles.inputText} 
-                                        placeholder="What You Go Study?"
-                                        value={task}
-                                        onChangeText={newTask => setTask(newTask)} 
-                                    />
-                                </View>
-                                <View>
-                                    <TouchableOpacity 
-                                        style={styles.buttonGo} onPress={sendTask} >
-                                        <Text style={styles.buttonText}>Ready</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
-                                    <Text style={styles.buttonBackText}>Back</Text>
+                                <TouchableOpacity
+                                    style={styles.buttonGo} onPress={sendTask} >
+                                    <Text style={styles.buttonText}>Ready</Text>
                                 </TouchableOpacity>
                             </View>
+                            <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+                                <Text style={styles.buttonBackText}>Back</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         justifyContent: 'center',
-        alignItems: 'center',       
+        alignItems: 'center',
         backgroundColor: '#6197EB',
         borderTopStartRadius: 60,
         borderTopEndRadius: 60,
