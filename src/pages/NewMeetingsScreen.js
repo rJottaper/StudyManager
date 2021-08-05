@@ -15,18 +15,19 @@ const newMeetings = () => {
 
   const done = () => {
     if (meeting === '' && date === '') {
-      Alert.alert('Please complete the fields')
-    } else if (meeting === '') {
-      Alert.alert('Please, post a topic')
-    } else if (date === '') {
-      Alert.alert('Please, post a date')
-    } else {
-      navigation.navigate('StudyWithFriends', {
-        key: id,
-        meetingName: meeting,
-        numberDay: date
-      })
-    }
+      return Alert.alert('Please complete the fields')
+    } 
+    if (meeting === '') {
+      return Alert.alert('Please, post a topic')
+    } 
+    if (date === '') {
+      return Alert.alert('Please, post a date')
+    } 
+    navigation.navigate('StudyWithFriendsScreen', {
+      key: id,
+      meetingName: meeting,
+      numberDay: date
+    })
   }
 
   return (
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E0E5EF',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%'
   },
   title: {
     color: '#6197EB',

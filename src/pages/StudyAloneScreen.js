@@ -14,26 +14,21 @@ const StudyAlone = ({ route }) => {
     useEffect(() => {
         if (route.params) {
             const { key, taskName } = route.params
-            const id = key
-            const task = taskName
-            
-            if (task === undefined || id === undefined) {
-                setData([])
-            } else {
-                setData(oldData => [...oldData, { id, task }])
+            if (taskName === undefined || key === undefined) {
+                return setData([])
             }
+            setData(oldData => [...oldData, { key, taskName }])
         }
     }, [route.params])
 
-    const removeTask = id => {
-        const filteredId = data.filter(item => item.id !== id)
+    const removeTask = key => {
+        const filteredId = data.filter(item => item.key !== key)
         setData(filteredId)
-        console.log(filteredId);
     }
     
     return (
         <SafeAreaView style={styles.container}>
-            <Header email={route.params.email} style={styles.header}  />
+            <Header username={route.params.username} style={styles.header}  />
             <View style={styles.view}>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddTaskScreen')}>
                     <Icon name="plus" style={styles.buttonText} />
@@ -42,8 +37,8 @@ const StudyAlone = ({ route }) => {
             </View>
             <FlatList
                 data={data}
-                renderItem={({ item }) => <Task task={item.task} removeTask={() => removeTask(item.id)} />}
-                keyExtractor={item => item.id}
+                renderItem={({ item }) => <Task task={item.taskName} removeTask={() => removeTask(item.key)} />}
+                keyExtractor={item => item.key}
             />
         </SafeAreaView>
     )

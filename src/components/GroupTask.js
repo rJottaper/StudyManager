@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import userImg from '../img/unknown.png'
 
-const GroupTask = ({ meeting, day }) => {
+const GroupTask = ({ meeting, day, open }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={open}>
       <View style={styles.viewContent}>
         <View style={styles.header}>
           <View style={styles.date}>
@@ -87,7 +90,6 @@ const styles = StyleSheet.create({
     height: 25,
     borderRadius: 20,
   },
-  
 });
 
 export default GroupTask;

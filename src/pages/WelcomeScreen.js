@@ -5,7 +5,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import WelcomeImg from '../img/Welcome.svg'
 
-const Welcome = ({  }) => {
+const Welcome = () => {
     const navigation = useNavigation();
     
     return (
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
         marginLeft: 2,
         marginTop: 3
     }
-
 })
 
 export default Welcome;

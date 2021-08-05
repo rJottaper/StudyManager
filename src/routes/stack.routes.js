@@ -6,8 +6,8 @@ import LoginScreen from '../pages/LoginScreen';
 import HomeScreen from '../pages/HomeScreen';
 import StudyAloneScreen from '../pages/StudyAloneScreen';
 import AddTaskScreen from '../pages/AddTaskScreen';
-import StudyWithFriends from '../pages/StudyWithFriends';
-import NewMeetings from '../pages/NewMeetings';
+import StudyWithFriendsScreen from '../pages/StudyWithFriendsScreen';
+import NewMeetingsScreen from '../pages/NewMeetingsScreen';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -19,8 +19,8 @@ const AppRoutes = () => {
             <Screen name="HomeScreen" component={HomeScreen} />
             <Screen name="StudyAloneScreen" component={StudyAloneScreen} />
             <Screen name="AddTaskScreen" component={AddTaskScreen} />
-            <Screen name="StudyWithFriends" component={StudyWithFriends} />
-            <Screen name="NewMeetings" component={NewMeetings} />
+            <Screen name="StudyWithFriendsScreen" component={StudyWithFriendsScreen} />
+            <Screen name="NewMeetingsScreen" component={NewMeetingsScreen} />
         </Navigator>
     )
 };

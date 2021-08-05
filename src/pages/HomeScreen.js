@@ -7,22 +7,22 @@ import Header from '../components/Header'
 
 const Home = ({ route }) => {
     const navigation = useNavigation();
-    const { email } = route.params
+    const { username } = route.params
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header email={route.params.email} />
+            <Header username={route.params.username} />
             <View>
                 <Text style={styles.title}>
                     How do you want to study today?
                 </Text>
             </View>
             <View style={styles.method}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyAloneScreen', {email})}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyAloneScreen', {username})}>
                     <FontAwesome name="user" style={styles.icons} />
                     <Text style={styles.texts}>Study Alone</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyWithFriends', {email})}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StudyWithFriendsScreen', {username})}>
                     <FontAwesome name="users" style={styles.icons} />
                     <Text style={styles.texts}>Study With Friends</Text>
                 </TouchableOpacity>
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         color: '#6197EB',
         textAlign: 'center'
-
     }
 })
 

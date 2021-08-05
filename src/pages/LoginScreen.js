@@ -7,18 +7,20 @@ import SecurityImg from '../img/online.svg'
 const Login = ({ route }) => {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isFilled, setIsFilled] = useState();
 
-  const changeEmail = (value) => {
-    setIsFilled(!value);
-    setEmail(value);
-  }
-
-  const changePassword = (value) => {
-    setIsFilled(!value);
-    setPassword(value);
+  const Login = () => {
+    if (username === '' && password === '') {
+      return Alert.alert('You Must Enter Your Username and Password')
+    } 
+    if (username === '') {
+      return Alert.alert('You Must Enter With Your Username')
+    } 
+    if (password === '') {
+      return Alert.alert('You Must Enter With Your Password')
+    }
+    navigation.navigate('HomeScreen', { username })
   }
 
   return (
@@ -39,9 +41,9 @@ const Login = ({ route }) => {
               <Text style={styles.texts}>Username</Text>
               <TextInput
                 placeholder='yourname'
-                style={styles.email}
-                value={email}
-                onChangeText={changeEmail}
+                style={styles.username}
+                value={username}
+                onChangeText={(username) => setUsername(username)}
               />
             </View>
             <View style={styles.inputs}>
@@ -52,10 +54,10 @@ const Login = ({ route }) => {
                 style={styles.password}
                 secureTextEntry={true}
                 value={password}
-                onChangeText={changePassword}
+                onChangeText={(password) => setPassword(password)}
               />
             </View>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeScreen', { email })}>
+            <TouchableOpacity style={styles.button} onPress={Login}>
               <Text style={styles.buttonText}>
                 Login
               </Text>
@@ -74,8 +76,6 @@ const Login = ({ route }) => {
     </SafeAreaView>
   )
 };
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     marginTop: 5
   },
-  email: {
+  username: {
     fontSize: 14,
     borderBottomWidth: 1,
     borderBottomColor: '#B9C7DA',
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
     padding: 25,
     marginTop: 30,
   }
-
 })
 
 export default Login;

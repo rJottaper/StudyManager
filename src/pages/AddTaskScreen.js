@@ -13,13 +13,12 @@ const AddTask = ({  }) => {
 
     const sendTask = () => {
         if (task == '') {
-            Alert.alert('You Must Put a Task')
-        } else {
-            navigation.navigate('StudyAloneScreen', {
-                key: key,
-                taskName: task
-            })
+            return Alert.alert('You Must Put a Task')
         }
+        navigation.navigate('StudyAloneScreen', {
+            key: key,
+            taskName: task
+        })
     };
 
     return (

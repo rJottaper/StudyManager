@@ -9,7 +9,7 @@ const Header = (route, navigation) => {
         <View style={styles.container}>
             <View>
                 <Text style={styles.greeting}>Hi,</Text>
-                <Text style={styles.username}>{route.email}</Text>
+                <Text style={styles.username}>{route.username}</Text>
             </View>
             <Image source={userImg} style={styles.image} />
         </View>
